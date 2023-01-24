@@ -20,20 +20,39 @@ public:
 class Circle
 {
 private:
-	int center;
+	int rad;
+	Point center;
 public:
-	void Init(int center)
+	void Init(int x, int y, int r)
 	{
-		this->center = center;
+		rad = r;
+		center.Init(x, y);
+	}
+	void ShowCircleInfo() const
+	{
+		cout << "radius : " << rad << endl;
+		center.ShowPointInfo();
 	}
 };
 
 class Ring
 {
 private:
-	int xpos, ypos, rpos;
+	Circle inCircle;
+	Circle outCircle;
 public:
-	void Init();
+	void Init(int inX, int inY, int inR, int outX, int outY, int outR)
+	{
+		inCircle.Init(inX, inY, inR);
+		outCircle.Init(outX, outY, outR);
+	}
+	void ShowRingInfo() const
+	{
+		cout << "Inner Circle Info..." << endl;
+		inCircle.ShowCircleInfo();
+		cout << "Outter Circle Info..." << endl;
+		outCircle.ShowCircleInfo();
+	}
 };
 
 int main(void)
